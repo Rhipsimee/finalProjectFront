@@ -1,1 +1,102 @@
-<p>consultation works!</p>
+<p>Edition d'une consultation</p>
+<table class="table">
+    <thead class=" text-primary">
+        <th>
+            idConsultation
+        </th>
+        <th>
+            bilanPrescription
+        </th>
+        <th>
+            rdv
+        </th>
+        <th>
+            facture
+        </th>
+        <th>
+            lstPrescription
+        </th>
+        
+        
+       
+ 
+ 
+    </thead>
+    <tbody>
+        <tr *ngFor="let clt of lstCons">
+            <td>{{clt.idConsultation}}</td>
+            <td>{{clt.bilanPrescription}}</td>
+            <td>{{clt.rdv}}</td>
+            <td>{{clt.facture}}</td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
+
+<br>
+
+
+
+
+
+
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h1 class="card-title"></h1>
+
+            </div>
+            <div class="card-body">
+                <div class="container">
+
+                    <form [formGroup]="myForm">
+
+                        <div class="form-group">
+                            <label for="alterEgo">idConsultation</label>
+                            <input type="number" [(ngModel)]="cons.idConsultation" class="form-control"
+                                formControlName="idConsultation" />
+                            <div *ngIf="myForm.get('idConsultation').hasError('required')">
+                            rentre l'id stp
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">bilanPrescription</label>
+                            <input [(ngModel)]="cons.bilanPrescription" class="form-control" formControlName="bilanPrescription" />
+                            <div *ngIf="myForm.get('bilanPrescription').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">Nom du patient du rdv concerné</label>
+                            <select [(ngModel)]="rdv" class="form-control" formControlName="lerdv">
+
+                                <option *ngFor="let clt of lstRdv" [ngValue]="clt">{{clt.patient.nomPatient}}</option>
+                        </select>
+
+                        </div>
+                        
+                        
+                        
+
+                        
+                              
+
+
+                       
+
+                        
+            
+
+
+                        <button *ngIf="!myForm.get('idConsultation').hasError('required')" class="btn btn-success" type="button" (click)="ajout()">Valider</button>
+                        <button *ngIf="!myForm.get('idConsultation').hasError('required')" class="btn btn-success" type="button" (click)="suppression()">Suppression</button>
+                        
+                      
+                       
+
+                    </form>
+

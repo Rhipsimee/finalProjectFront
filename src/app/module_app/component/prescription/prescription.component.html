@@ -1,1 +1,107 @@
-<p>prescription works!</p>
+<p>Edition d'une prescription</p>
+<table class="table">
+    <thead class=" text-primary">
+        <th>
+            idPrescription
+        </th>
+        <th>
+            description
+        </th>
+        <th>
+            validee
+        </th>
+        <th>
+            consultation
+        </th>
+       
+        
+        
+       
+ 
+ 
+    </thead>
+    <tbody>
+        <tr *ngFor="let clt of lstPres">
+            <td>{{clt.idPrescription}}</td>
+            <td>{{clt.description}}</td>
+            <td>{{clt.payee}}</td>
+            <td>{{clt.consultation.idConsultation}}</td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
+
+<br>
+
+
+
+
+
+
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h1 class="card-title"></h1>
+
+            </div>
+            <div class="card-body">
+                <div class="container">
+
+                    <form [formGroup]="myForm">
+
+                        <div class="form-group">
+                            <label for="alterEgo">Consultation associée à la prescription</label>
+                            <select [(ngModel)]="cons" class="form-control" formControlName="lecons">
+
+                                <option *ngFor="let clt of lstCons" [ngValue]="clt">{{clt.idConsultation}}</option>
+                        </select>
+
+                        <button  class="btn btn-success" type="button" (click)="afficheFacparCons()">Choisir la consultation associée</button>
+
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            <label for="alterEgo">idPrescription</label>
+                            <input type="number" [(ngModel)]="pres.idPrescription" class="form-control"
+                                formControlName="idPrescription" />
+                            <div *ngIf="myForm.get('idPrescription').hasError('required')">
+                            rentre l'id stp
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">description</label>
+                            <input [(ngModel)]="pres.description" class="form-control" formControlName="description" />
+                            <div *ngIf="myForm.get('description').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+
+                        
+                              
+
+
+                       
+
+                        
+            
+
+
+                        <button *ngIf="!myForm.get('idPrescription').hasError('required')" class="btn btn-success" type="button" (click)="ajout()">Editer</button>
+                        <button *ngIf="!myForm.get('idPrescription').hasError('required')" class="btn btn-success" type="button" (click)="suppression()">Suppression</button>
+                        
+                        
+                      
+                       
+
+                    </form>
+

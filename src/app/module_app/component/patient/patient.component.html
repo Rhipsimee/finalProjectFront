@@ -1,1 +1,130 @@
-<p>patient works!</p>
+<p>Inscription du patient</p>
+<table class="table">
+    <thead class=" text-primary">
+        <th>
+            idPatient
+        </th>
+        <th>
+            nomPatient
+        </th>
+        <th>
+            prenomPatient
+        </th>
+        <th>
+           sexe
+        </th>
+        <th>
+            dateNaissance
+        </th>
+        <th>
+            numSecu
+        </th>
+        <th>
+            mailPatient
+        </th>
+        
+       
+ 
+ 
+    </thead>
+    <tbody>
+        <tr *ngFor="let clt of lstPat">
+            <td>{{clt.idPatient}}</td>
+            <td>{{clt.nomDepartement}}</td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
+
+<br>
+
+
+
+
+
+
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h1 class="card-title"></h1>
+
+            </div>
+            <div class="card-body">
+                <div class="container">
+
+                    <form [formGroup]="myForm">
+
+                        <div class="form-group">
+                            <label for="alterEgo">idPatient</label>
+                            <input type="number" [(ngModel)]="pat.idPatient" class="form-control"
+                                formControlName="idPatient" />
+                            <div *ngIf="myForm.get('idPatient').hasError('required')">
+                            rentre l'id stp
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">nomPatient</label>
+                            <input [(ngModel)]="pat.nomPatient" class="form-control" formControlName="nomPatient" />
+                            <div *ngIf="myForm.get('nomPatient').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">prenomPatient</label>
+                            <input [(ngModel)]="pat.prenomPatient" class="form-control" formControlName="prenomPatient" />
+                            <div *ngIf="myForm.get('prenomPatient').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">Homme</label>
+                            <input type="radio" [(ngModel)]="pat.sexe" value="Homme"  class="form-control" formControlName="sexe" />
+                            <label for="alterEgo">Femme</label>
+                            <input type="radio" [(ngModel)]="pat.sexe" value="Femme"  class="form-control" formControlName="sexe" />
+                           
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">dateNaissance</label>
+                            <input [(ngModel)]="pat.dateNaissance" class="form-control" formControlName="dateNaissance" />
+                            <div *ngIf="myForm.get('dateNaissance').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">numSecu</label>
+                            <input type="number" [(ngModel)]="pat.numSecu" class="form-control"
+                                formControlName="numSecu" />
+                            <div *ngIf="myForm.get('numSecu').hasError('required')">
+                            rentre l'id stp
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">mailPatient</label>
+                            <input [(ngModel)]="pat.mailPatient" class="form-control" formControlName="mailPatient" />
+                            <div *ngIf="myForm.get('mailPatient').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        
+
+                        
+                              
+
+
+                       
+
+                        
+            
+
+
+                        <button *ngIf="!myForm.get('idPatient').hasError('required')" class="btn btn-success" type="button" (click)="ajout()">Valider</button>
+                        <button *ngIf="!myForm.get('idPatient').hasError('required')" class="btn btn-success" type="button" (click)="suppression()">Suppression</button>
+                      
+                       
+
+                    </form>
+

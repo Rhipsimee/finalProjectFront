@@ -1,0 +1,91 @@
+<p>Assigner des créneaux à un médecin</p>
+
+
+<br>
+
+
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h1 class="card-title"></h1>
+
+            </div>
+            <div class="card-body">
+                <div class="container">
+
+                    <form [formGroup]="myForm">
+
+
+                        <div class="form-group">
+                            <label for="alterEgo">Choisir le médecin</label>
+                            <select [(ngModel)]="med" class="form-control" formControlName="lemed">
+
+                                <option *ngFor="let clt of lstMed" [ngValue]="clt">{{clt.nomMedecin}}</option>
+                        </select>
+                        
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alterEgo">id</label>
+                            <input type="number" [(ngModel)]="cren.id" class="form-control"
+                                formControlName="id" />
+                            <div *ngIf="myForm.get('id').hasError('required')">
+                            rentre l'id stp
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">horaire</label>
+                            <input [(ngModel)]="cren.horaire" class="form-control" formControlName="horaire" />
+                            <div *ngIf="myForm.get('horaire').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        
+
+                        <button *ngIf="!myForm.get('id').hasError('required')" class="btn btn-success" type="button" (click)="ajout()">Editer</button>
+                        <button *ngIf="!myForm.get('id').hasError('required')" class="btn btn-success" type="button" (click)="suppression()">Suppression</button>
+
+                    </form>
+
+                </div>
+            </div>
+
+                <div>
+                    <table class="table">
+                        <thead class=" text-primary">
+                            <th>
+                                id
+                            </th>
+                            <th>
+                                horaire
+                            </th>
+                            <th>
+                                medecin
+                            </th>
+                            
+                           
+                            
+                            
+                           
+                     
+                     
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let clt of lstCren">
+                                <td>{{clt.id}}</td>
+                                <td>{{clt.horaire}}</td>
+                                <td>{{clt.medecin.nomMedecin}}</td>
+                                
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+        </div>
+    </div>
+ </div>

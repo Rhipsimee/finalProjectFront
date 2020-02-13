@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+ 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,12 @@ import { PatientService } from './module_app/service/patient.service';
 import { PrescriptionService } from './module_app/service/prescription.service';
 import { RdvService } from './module_app/service/rdv.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IndexComponent } from './module_app/component/index/index.component';
+import { IndexpatientComponent } from './module_app/component/indexpatient/indexpatient.component';
+import { PortailsupermedComponent } from './module_app/component/portailsupermed/portailsupermed.component';
+import { PortailcollabComponent } from './module_app/component/portailcollab/portailcollab.component';
+import { FacupdateComponent } from './module_app/component/facupdate/facupdate.component';
+import { CreneauComponent } from './module_app/component/creneau/creneau.component';
 
 
 @NgModule({
@@ -32,7 +38,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MedecinComponent,
     PatientComponent,
     PrescriptionComponent,
-    RdvComponent
+    RdvComponent,
+    IndexComponent,
+    IndexpatientComponent,
+    PortailsupermedComponent,
+    PortailcollabComponent,
+    FacupdateComponent,
+    CreneauComponent
   ],
   imports: [
     BrowserModule,
@@ -40,8 +52,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
     BrowserAnimationsModule
+    
   ],
   providers: [ConsultationService,DepartementService,FactureService,MedecinService,PatientService,PrescriptionService,RdvService],
   bootstrap: [AppComponent]

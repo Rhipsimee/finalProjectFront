@@ -1,0 +1,74 @@
+<p>Acquitter le payement d'une facture</p>
+
+
+<br>
+
+
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h1 class="card-title"></h1>
+
+            </div>
+            <div class="card-body">
+                <div class="container">
+
+                    <form [formGroup]="myForm">
+
+
+                        <div class="form-group">
+                            <label for="alterEgo">Choisir la facture</label>
+                            <select [(ngModel)]="oldfac" class="form-control" formControlName="leoldfac">
+
+                                <option *ngFor="let clt of lstFac" [ngValue]="clt">{{clt.idFacture}}</option>
+                        </select>
+                        <button class="btn btn-success" type="button" (click)="update()">Acquitter la facture</button>
+
+                        </div>
+
+                        
+
+                    </form>
+
+                </div>
+            </div>
+
+                <div *ngIf="!myForm.get('leoldfac').hasError('required')">
+                    <table class="table">
+                        <thead class=" text-primary">
+                            <th>
+                                idFacture
+                            </th>
+                            <th>
+                                dateEdition
+                            </th>
+                            <th>
+                                payee
+                            </th>
+                            <th>
+                                consultation
+                            </th>
+                           
+                            
+                            
+                           
+                     
+                     
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{oldfac.idFacture}}</td>
+                                <td>{{oldfac.dateEdition}}</td>
+                                <td>{{oldfac.payee}}</td>
+                                <td>{{oldfac.consultation.idConsultation}}</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+        </div>
+    </div>
+ </div>

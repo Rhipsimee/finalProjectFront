@@ -4,7 +4,7 @@ export class Patient {
     nomPatient:string;
     prenomPatient:string;
     sexe:string;
-    dateNaissance:Date;
+    dateNaissance:String;
     numSecu:number;
     mailPatient:string;
     

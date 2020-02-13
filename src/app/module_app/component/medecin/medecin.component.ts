@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Medecin } from '../../model/Medecin';
 import { Departement } from '../../model/Departement';
 import { DepartementService } from '../../service/departement.service';
+import { Creneau } from '../../model/Creneau';
 
 @Component({
   selector: 'app-medecin',

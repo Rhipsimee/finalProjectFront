@@ -12,7 +12,7 @@
             motif
         </th>
         <th>
-            prout medecin
+            medecin
         </th>
         
        
@@ -61,16 +61,17 @@
                             </div>
 
                         </div>
+
                         <div class="form-group">
-                            <label for="alterEgo">date</label>
-                            <mat-form-field>
-                                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                              </mat-form-field>
-                            <input type="text" [(ngModel)]="rdv.date" class="form-control"
-                            formControlName="date" >
+                            <label for="alterEgo">Choisir le patient</label>
+                            <select [(ngModel)]="pat" class="form-control" formControlName="lepatient">
+
+                                <option *ngFor="let clt of lstPat" [ngValue]="clt">{{clt.nomPatient}}</option>
+                        </select>
+
+                       
                         </div>
+                        
                         <div class="form-group">
                             <label for="alterEgo">motif</label>
                             <input [(ngModel)]="rdv.motif" class="form-control" formControlName="motif" />
@@ -85,17 +86,7 @@
                             
                             <select [(ngModel)]="dept" class="form-control" formControlName="ledept" (change)="afficheMedparDept()">
 
-                            
-
-                           
-
-
                                 <option *ngFor="let clt of lstDept" [ngValue]="clt">{{clt.nomDepartement}}</option>
-
-	
-	
-
-                           
                         </select>
 
                        
@@ -106,7 +97,7 @@
                             <label for="alterEgo">Choisir le medecin</label>
                            
                             
-                            <select [(ngModel)]="med" class="form-control" formControlName="lemed">
+                            <select [(ngModel)]="med" class="form-control" formControlName="lemed" (change)="afficheCrenparMed()">
 
                             
 
@@ -119,6 +110,17 @@
 	
 
                            
+                        </select>
+                        </div>
+                        
+                        <div class="form-group">
+
+                            <label for="alterEgo">Choisir le créneau</label>
+                           
+                            
+                            <select [(ngModel)]="cren" class="form-control" formControlName="lecren" >
+
+                                <option *ngFor="let clt of lstCren" [ngValue]="clt">{{clt.horaire}}</option>
                         </select>
 
                        
@@ -136,7 +138,7 @@
 
                         <button *ngIf="!myForm.get('idRdv').hasError('required')" class="btn btn-success" type="button" (click)="ajout()">Ajout</button>
                         <button *ngIf="!myForm.get('idRdv').hasError('required')" class="btn btn-success" type="button" (click)="suppression()">Suppression</button>
-                        <button  class="btn btn-success" type="button" (click)="oui()">Oui</button>
+                        
                        
 
                     </form>

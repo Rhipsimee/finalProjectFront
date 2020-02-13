@@ -3,7 +3,7 @@ import { Consultation } from './Consultation';
 export class Facture {
 
     idFacture:number;
-    dateEdition:Date;
+    dateEdition:string;
     payee:boolean;
     consultation:Consultation;
     

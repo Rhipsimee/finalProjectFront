@@ -6,6 +6,10 @@ import { Medecin } from '../../model/Medecin';
 import { Departement } from '../../model/Departement';
 import { RdvService } from '../../service/rdv.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Patient } from '../../model/Patient';
+import { PatientService } from '../../service/patient.service';
+import { Creneau } from '../../model/Creneau';
+import { CreneauService } from '../../service/creneau.service';
 
 @Component({
   selector: 'app-rdv',
@@ -16,24 +20,32 @@ export class RdvComponent implements OnInit {
 rdv:Rdv = new Rdv();
 med:Medecin;
 dept:Departement;
+pat:Patient;
+cren:Creneau;
 
 lstRdv:Rdv[];
 lstMed:Medecin[];
 lstDept:Departement[];
+lstPat:Patient[];
+lstCren:Creneau[];
 
 myForm = new FormGroup({
   idRdv: new FormControl('',Validators.required),
   motif: new FormControl('', Validators.required),
   ledept: new FormControl(''),
   lemed: new FormControl(''),
-  date: new FormControl('')
+  date: new FormControl(''),
+  lepatient : new FormControl(''),
+  lecren : new FormControl('')
+  
   
 
 });
-  constructor(private deptservice:DepartementService,private medservice:MedecinService,private rdvservice:RdvService) { }
+  constructor(private deptservice:DepartementService,private medservice:MedecinService,private rdvservice:RdvService, private patservice:PatientService, private crenservice:CreneauService) { }
 
   ngOnInit() {this.affiche();
     this.afficheDept();
+    this.affichePat();
     
     
   }
@@ -44,12 +56,19 @@ myForm = new FormGroup({
     
     
        this.rdv.medecin = this.med;
+       this.rdv.patient = this.pat;
+       this.rdv.creneau = this.cren;
+
+
       
    this.rdvservice.ajoutRdv(this.rdv).subscribe
        (
          data => {
            console.log( "dept ajouté avec succès !!" );
          });
+
+
+         this.updateCren();
 
          
 
@@ -109,6 +128,46 @@ myForm = new FormGroup({
 
 
         }
+        afficheCrenparMed():void{
+
+          console.log(this.med);
+
+          
+
+          this.crenservice.getAllCreneauParMed(this.med).subscribe(data => { this.lstCren = data;},
+            error => {console.log(error);});
+    
+            
+         
+          return;
+          
+
+
+
+        }
+
+        affichePat():void{
+          this.patservice.getAllPatient().subscribe(data => { this.lstPat = data;},
+            error => {console.log(error);});
+    
+            
+         
+          return;
+          
+          }
+
+          updateCren(){
+
+            this.cren.reserve = true;
+
+         this.crenservice.updateCreneau(this.cren).subscribe(
+          error => {console.log(error);});
+
+         console.log(this.cren);
+
+
+
+          }
 
         oui(){
           console.log(this.lstDept);
