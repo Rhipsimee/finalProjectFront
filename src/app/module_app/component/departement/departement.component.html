@@ -1,0 +1,78 @@
+<p>Gestion des départements</p>
+<table class="table">
+    <thead class=" text-primary">
+        <th>
+            idDepartement
+        </th>
+        <th>
+            nomDepartement
+        </th>
+        
+       
+ 
+ 
+    </thead>
+    <tbody>
+        <tr *ngFor="let clt of lstDept">
+            <td>{{clt.idDepartement}}</td>
+            <td>{{clt.nomDepartement}}</td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
+
+<br>
+
+
+
+
+
+
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h1 class="card-title"></h1>
+
+            </div>
+            <div class="card-body">
+                <div class="container">
+
+                    <form [formGroup]="myForm">
+
+                        <div class="form-group">
+                            <label for="alterEgo">idDepartement</label>
+                            <input type="number" [(ngModel)]="dept.idDepartement" class="form-control"
+                                formControlName="idDepartement" />
+                            <div *ngIf="myForm.get('idDepartement').hasError('required')">
+                            rentre l'id stp
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">nomDepartement</label>
+                            <input [(ngModel)]="dept.nomDepartement" class="form-control" formControlName="nomDepartement" />
+                            <div *ngIf="myForm.get('nomDepartement').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        
+
+                        
+                              
+
+
+                       
+
+                        
+            
+
+
+                        <button *ngIf="!myForm.get('idDepartement').hasError('required')" class="btn btn-success" type="button" (click)="ajout()">Ajout</button>
+                        <button *ngIf="!myForm.get('idDepartement').hasError('required')" class="btn btn-success" type="button" (click)="suppression()">Suppression</button>
+                      
+                       
+
+                    </form>

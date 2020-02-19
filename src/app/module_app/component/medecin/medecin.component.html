@@ -1,0 +1,104 @@
+<p>Gestion des médecins</p>
+<table class="table">
+    <thead class=" text-primary">
+        <th>
+            idMedecin
+        </th>
+        <th>
+            nomMedecin
+        </th>
+        <th>
+            id du Dept
+        </th>
+        
+       
+ 
+ 
+    </thead>
+    <tbody>
+        <tr *ngFor="let clt of lstMed">
+            <td>{{clt.idMedecin}}</td>
+            <td>{{clt.nomMedecin}}</td>
+            <td>{{clt.departement}}</td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
+
+<br>
+
+
+
+
+
+
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h1 class="card-title"></h1>
+
+            </div>
+            <div class="card-body">
+                <div class="container">
+
+                    <form [formGroup]="myForm">
+
+                        <div class="form-group">
+                            <label for="alterEgo">idMedecin</label>
+                            <input type="number" [(ngModel)]="med.idMedecin" class="form-control"
+                                formControlName="idMedecin" />
+                            <div *ngIf="myForm.get('idMedecin').hasError('required')">
+                            rentre l'id stp
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">nomMedecin</label>
+                            <input [(ngModel)]="med.nomMedecin" class="form-control" formControlName="nomMedecin" />
+                            <div *ngIf="myForm.get('nomMedecin').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="alterEgo">Choisir le departement</label>
+                           
+                            
+                            <select [(ngModel)]="dept" class="form-control" formControlName="ledept">
+
+                            
+
+                           
+
+
+                                <option *ngFor="let clt of lstDept" [ngValue]="clt">{{clt.nomDepartement}}</option>
+
+	
+	
+
+                           
+                        </select>
+
+                       
+                        </div>
+
+                        
+                              
+
+
+                       
+
+                        
+            
+
+
+                        <button *ngIf="!myForm.get('idMedecin').hasError('required')" class="btn btn-success" type="button" (click)="ajout()">Ajout</button>
+                        <button *ngIf="!myForm.get('idMedecin').hasError('required')" class="btn btn-success" type="button" (click)="suppression()">Suppression</button>
+                      
+                       
+
+                    </form>
+

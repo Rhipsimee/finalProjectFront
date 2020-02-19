@@ -1,0 +1,143 @@
+<p>Gestion des Rdv</p>
+
+<table class="table">
+    <thead class=" text-primary">
+        <th>
+            idRdv
+        </th>
+        <th>
+            date
+        </th>
+        <th>
+            motif
+        </th>
+        <th>
+            prout medecin
+        </th>
+        
+       
+ 
+ 
+    </thead>
+    <tbody>
+        <tr *ngFor="let clt of lstRdv">
+            <td>{{clt.idRdv}}</td>
+           
+            <td>{{clt.motif}}</td>
+
+
+            
+        </tr>
+    </tbody>
+</table>
+
+
+
+<br>
+
+
+
+
+
+
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-danger">
+                <h1 class="card-title"></h1>
+
+            </div>
+            <div class="card-body">
+                <div class="container">
+
+                    <form [formGroup]="myForm">
+
+                        <div class="form-group">
+                            <label for="alterEgo">idRdv</label>
+                            <input type="number" [(ngModel)]="rdv.idRdv" class="form-control"
+                                formControlName="idRdv" />
+                            <div *ngIf="myForm.get('idRdv').hasError('required')">
+                            rentre l'id stp
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">date</label>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                            <input type="text" [(ngModel)]="rdv.date" class="form-control"
+                            formControlName="date" >
+                        </div>
+                        <div class="form-group">
+                            <label for="alterEgo">motif</label>
+                            <input [(ngModel)]="rdv.motif" class="form-control" formControlName="motif" />
+                            <div *ngIf="myForm.get('motif').hasError('required')">
+                               rentre le nom stp
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="alterEgo">Choisir le departement</label>
+                           
+                            
+                            <select [(ngModel)]="dept" class="form-control" formControlName="ledept" (change)="afficheMedparDept()">
+
+                            
+
+                           
+
+
+                                <option *ngFor="let clt of lstDept" [ngValue]="clt">{{clt.nomDepartement}}</option>
+
+	
+	
+
+                           
+                        </select>
+
+                       
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="alterEgo">Choisir le medecin</label>
+                           
+                            
+                            <select [(ngModel)]="med" class="form-control" formControlName="lemed">
+
+                            
+
+                           
+
+
+                                <option *ngFor="let clt of lstMed" [ngValue]="clt">{{clt.nomMedecin}}</option>
+
+	
+	
+
+                           
+                        </select>
+
+                       
+                        </div>
+
+                        
+                              
+
+
+                       
+
+                        
+            
+
+
+                        <button *ngIf="!myForm.get('idRdv').hasError('required')" class="btn btn-success" type="button" (click)="ajout()">Ajout</button>
+                        <button *ngIf="!myForm.get('idRdv').hasError('required')" class="btn btn-success" type="button" (click)="suppression()">Suppression</button>
+                        <button  class="btn btn-success" type="button" (click)="oui()">Oui</button>
+                       
+
+                    </form>
+
